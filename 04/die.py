@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choices
 
 class Die:
     """A class representing a single die."""
@@ -8,5 +8,8 @@ class Die:
         self.num_sides = num_sides
         
     def roll(self):
-        """"Return a random value between 1 and number of sides."""
-        return randint(1, self.num_sides)
+        """Return a random value based on probabilities."""
+        if self.num_sides == 6:
+            return randint(1, self.num_sides)
+        else:  
+            return choices(range(1, self.num_sides + 3))[0]
