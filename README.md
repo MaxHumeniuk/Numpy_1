@@ -5,4 +5,4 @@ pip install matplotlib plotly
 # Lab5 requirements
 ```bash
 pip install numpy
-```
+```# Numpy
