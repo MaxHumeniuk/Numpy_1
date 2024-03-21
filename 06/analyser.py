@@ -27,16 +27,22 @@ def main():
     ax1.plot(df_1.close, label='Ціна закриття')
     ax1.plot(df_1.SMA20, label='SMA 20 днів')
     ax1.plot(df_1.SMA50, label='SMA 50 днів')
+    ax1.set_title('ETH-USDT')
+    ax1.legend()
     ax1.grid()
 
     ax2.plot(df_2.close, label='Ціна закриття')
     ax2.plot(df_2.SMA20, label='SMA 20 днів')
     ax2.plot(df_2.SMA50, label='SMA 50 днів')
+    ax2.set_title('BTC-USDT')
+    ax2.legend()
     ax2.grid()
 
     ax3.plot(df_3.close, label='Ціна закриття')
     ax3.plot(df_3.SMA20, label='SMA 20 днів')
     ax3.plot(df_3.SMA50, label='SMA 50 днів')
+    ax3.set_title('SOL-USDT')
+    ax3.legend()
     ax3.grid()
 
     plt.show()
@@ -66,12 +72,54 @@ def main():
     plt.grid()
     plt.show()
 
+    # Обчислення RSA за 10, 20 та 50 днів
+    df_1['RSA10'] = df_1['close'].pct_change(10).rolling(window=10).mean()
+    df_1['RSA20'] = df_1['close'].pct_change(20).rolling(window=20).mean()
+    df_1['RSA50'] = df_1['close'].pct_change(50).rolling(window=50).mean()
+
+    df_2['RSA10'] = df_2['close'].pct_change(10).rolling(window=10).mean()
+    df_2['RSA20'] = df_2['close'].pct_change(20).rolling(window=20).mean()
+    df_2['RSA50'] = df_2['close'].pct_change(50).rolling(window=50).mean()
+
+    df_3['RSA10'] = df_3['close'].pct_change(10).rolling(window=10).mean()
+    df_3['RSA20'] = df_3['close'].pct_change(20).rolling(window=20).mean()
+    df_3['RSA50'] = df_3['close'].pct_change(50).rolling(window=50).mean()
+
+    # Побудова графіків RSA
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
+    fig.set_figwidth(14)
+    fig.set_figheight(7)
+
+    ax1.plot(df_1['RSA10'], label='RSA 10 днів')
+    ax1.plot(df_1['RSA20'], label='RSA 20 днів')
+    ax1.plot(df_1['RSA50'], label='RSA 50 днів')
+    ax1.set_title('ETH-USDT RSA')
+    ax1.legend()
+    ax1.grid()
+
+    ax2.plot(df_2['RSA10'], label='RSA 10 днів')
+    ax2.plot(df_2['RSA20'], label='RSA 20 днів')
+    ax2.plot(df_2['RSA50'], label='RSA 50 днів')
+    ax2.set_title('BTC-USDT RSA')
+    ax2.legend()
+    ax2.grid()
+
+    ax3.plot(df_3['RSA10'], label='RSA 10 днів')
+    ax3.plot(df_3['RSA20'], label='RSA 20 днів')
+    ax3.plot(df_3['RSA50'], label='RSA 50 днів')
+    ax3.set_title('SOL-USDT RSA')
+    ax3.legend()
+    ax3.grid()
+
+    plt.show()
+
+    #candle graph
     fig, axes = plt.subplots(1, 3, figsize=(14, 7))
 
-    mpf.plot(df_1, type='candle', ax=axes[0], ylabel='Price')
-    mpf.plot(df_2, type='candle', ax=axes[1], ylabel='Price')
-    mpf.plot(df_3, type='candle', ax=axes[2], ylabel='Price')
-
+    mpf.plot(df_1, type='candle', ax=axes[0], ylabel='Price') #For ETH
+    mpf.plot(df_2, type='candle', ax=axes[1], ylabel='Price') #For BTC
+    mpf.plot(df_3, type='candle', ax=axes[2], ylabel='Price') #For SOL
+    
     plt.tight_layout()
     plt.show()
 
