@@ -2,7 +2,7 @@ import json
 import pandas as pd
 from datetime import datetime
 from pandas.core.api import DataFrame as DataFrame
-from baseloader import BaseDataLoader
+from dataloader.baseloader import BaseDataLoader
 from enum import Enum
 import mplfinance as mpf
 
@@ -51,52 +51,3 @@ def calculate_rsa(data, window):
 
 if __name__ == "__main__":
     loader = CoinbaseLoader()
-    
-
-    all_pairs = loader.get_pairs()
-    
-
-    eth_usdt_data = loader.get_historical_data("eth-usdt", "2023-01-01", "2023-06-30", Granularity.ONE_DAY)
-    btc_usdt_data = loader.get_historical_data("btc-usdt", "2023-01-01", "2023-06-30", Granularity.ONE_DAY)
-    sol_usdt_data = loader.get_historical_data("sol-usdt", "2023-01-01", "2023-06-30", Granularity.ONE_DAY)
-    
-
-    print("ETH-USDT:")
-    print("Mean:", eth_usdt_data['close'].mean())
-    print("Standard Deviation:", eth_usdt_data['close'].std())
-    print()
-    
-    print("BTC-USDT:")
-    print("Mean:", btc_usdt_data['close'].mean())
-    print("Standard Deviation:", btc_usdt_data['close'].std())
-    print()
-    
-    print("SOL-USDT:")
-    print("Mean:", sol_usdt_data['close'].mean())
-    print("Standard Deviation:", sol_usdt_data['close'].std())
-    print()
-
-
-    print("RSA for ETH-USDT:")
-    print("10-Day RSA:", calculate_rsa(eth_usdt_data, 10))
-    print("20-Day RSA:", calculate_rsa(eth_usdt_data, 20))
-    print("50-Day RSA:", calculate_rsa(eth_usdt_data, 50))
-    print()
-
-    print("RSA for BTC-USDT:")
-    print("10-Day RSA:", calculate_rsa(btc_usdt_data, 10))
-    print("20-Day RSA:", calculate_rsa(btc_usdt_data, 20))
-    print("50-Day RSA:", calculate_rsa(btc_usdt_data, 50))
-    print()
-
-    print("RSA for SOL-USDT:")
-    print("10-Day RSA:", calculate_rsa(sol_usdt_data, 10))
-    print("20-Day RSA:", calculate_rsa(sol_usdt_data, 20))
-    print("50-Day RSA:", calculate_rsa(sol_usdt_data, 50))
-    print()
-
- 
-    mpf.plot(eth_usdt_data, type='candle', title='ETH-USDT')
-    mpf.plot(btc_usdt_data, type='candle', title='BTC-USDT')
-    mpf.plot(sol_usdt_data, type='candle', title='SOL-USDT')
-
