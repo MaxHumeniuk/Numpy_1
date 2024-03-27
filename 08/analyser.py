@@ -10,7 +10,7 @@ import os
 import yaml
 import logging.config
 
-def setup_logging(path='logger.yml', level=logging.INFO, env_key='LOG_CONFIG'):
+def setup_logging(path='logger.yml', level=logging.DEBUG, env_key='LOG_CONFIG'):
     path = os.getenv(env_key, path)
     if (os.path.exists(path)):
         with open(path, 'rt') as f:
@@ -25,7 +25,7 @@ def setup_logging(path='logger.yml', level=logging.INFO, env_key='LOG_CONFIG'):
     if not os.path.exists(logs_dir):
         os.makedirs(logs_dir)
 
-    log_file = os.path.join(logs_dir, 'info.log')
+    log_file = os.path.join(logs_dir, 'debug.log')
     file_handler = RotatingFileHandler(log_file, maxBytes=1024*1024, backupCount=5)
     file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
 
