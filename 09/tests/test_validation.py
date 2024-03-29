@@ -1,7 +1,7 @@
 import pytest
 from models.Stats import StatsModel
 
-# Тест для перевірки валідації min_market_funds
+
 def test_min_market_funds_validation():
     with pytest.raises(ValueError):
         StatsModel(
@@ -11,7 +11,7 @@ def test_min_market_funds_validation():
             quote_increment="0.0001",
             base_increment="1",
             display_name="GALA-EUR",
-            min_market_funds=-1,  # Невалідне значення
+            min_market_funds=-1, 
             margin_enabled=False,
             post_only=False,
             limit_only=False,
@@ -25,7 +25,7 @@ def test_min_market_funds_validation():
             high_bid_limit_percentage=""
         )
 
-# Тест для перевірки валідації max_slippage_percentage
+
 def test_max_slippage_percentage_validation():
     with pytest.raises(ValueError):
         StatsModel(
@@ -44,12 +44,12 @@ def test_max_slippage_percentage_validation():
             status_message="",
             trading_disabled=True,
             fx_stablecoin=False,
-            max_slippage_percentage=101,  # Невалідне значення
+            max_slippage_percentage=101,  
             auction_mode=False,
             high_bid_limit_percentage=""
         )
 
-# Тест для перевірки валідації status
+
 def test_status_validation():
     with pytest.raises(ValueError):
         StatsModel(
@@ -64,7 +64,7 @@ def test_status_validation():
             post_only=False,
             limit_only=False,
             cancel_only=False,
-            status="invalid_status",  # Невалідне значення
+            status="invalid_status", 
             status_message="",
             trading_disabled=True,
             fx_stablecoin=False,

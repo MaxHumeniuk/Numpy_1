@@ -77,10 +77,9 @@ def main():
 
     plt.show()
 
-    # Об'єднання DataFrame за індексом
     df = pd.concat([df_1, df_2, df_3], axis=1)
 
-    # Обробка та аналіз даних
+    
     cm = df[['close', 'SMA20', 'SMA50']].corr()
     sns.heatmap(cm, annot=True)
     plt.show()
@@ -102,7 +101,7 @@ def main():
     plt.grid()
     plt.show()
 
-    # Обчислення RSA за 10, 20 та 50 днів
+    
     df_1['RSA10'] = df_1['close'].pct_change(10).rolling(window=10).mean()
     df_1['RSA20'] = df_1['close'].pct_change(20).rolling(window=20).mean()
     df_1['RSA50'] = df_1['close'].pct_change(50).rolling(window=50).mean()
@@ -115,7 +114,7 @@ def main():
     df_3['RSA20'] = df_3['close'].pct_change(20).rolling(window=20).mean()
     df_3['RSA50'] = df_3['close'].pct_change(50).rolling(window=50).mean()
 
-    # Побудова графіків RSA
+    
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
     fig.set_figwidth(14)
     fig.set_figheight(7)
