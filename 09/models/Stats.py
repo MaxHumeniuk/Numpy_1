@@ -24,14 +24,17 @@ class StatsModel(BaseModel):
 
     @root_validator(pre=True)
     def validate_min_market_funds(cls, values):
-        if 'min_market_funds' in values and values['min_market_funds'] <= 0:
+        value = float(values['min_market_funds'])
+        if value <= 0:
             raise ValueError('Min market funds must be greater than 0.')
+        values['min_market_funds'] = value
         return values
 
     @root_validator(pre=True)
     def validate_max_slippage_percentage(cls, values):
-        if 'max_slippage_percentage' in values and not 0 <= values['max_slippage_percentage'] <= 100:
-            raise ValueError('Max slippage percentage must be between 0 and 100.')
+        value = float(values['max_slippage_percentage'])
+        if  value < 0 or value > 100:
+            raise ValueError(f'Max slippage percentage must be between 0 and 100: {value}')
         return values
 
     @root_validator(pre=True)
